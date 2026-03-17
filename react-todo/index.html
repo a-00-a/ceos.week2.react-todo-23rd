@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./logo/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./logo/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./logo/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./logo/site.webmanifest" />
+
+    <title>React Todo</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <button class="hamburger">☰</button>
+      <h2>To Do</h2>
+    </header>
+    <!-- Aside -->
+    <aside>
+      <div class="sidebar">
+        <button class="close">◀</button>
+        <button class="weekBtn" data-days="-7">이전 주</button>
+        <button class="weekBtn" data-days="7">다음 주</button>
+        <button class="theme">다크모드 설정🌙</button>
+      </div>
+    </aside>
+    <!-- Nav -->
+    <nav>
+      <button class="dateButton" id="prev">◀</button>
+      <span id="currentDate"></span>
+      <div class="calendarWrapper">
+        <input type="date" id="datePicker" />
+      </div>
+      <button class="dateButton" id="next">▶</button>
+    </nav>
+    <!-- Main -->
+    <main>
+      <div class="inputContainer">
+        <input placeholder="오늘의 할 일을 적어주세요!" class="input" />
+        <div class="count"><span id="todo-count">0</span>개</div>
+        <button class="enter">등록</button>
+      </div>
+      <div class="container"></div>
+    </main>
+    <script src="./main.js"></script>
+  </body>
+</html>
