@@ -1,0 +1,451 @@
+:root {
+  --bg: #cbdef0;
+  --bg-darkmode: #3d3c3c;
+  --text: #000000;
+  --text-darkmode: #5b5959;
+  --text-header: #000000;
+  --text-darkmode-header: #ffffff;
+
+  /* inputContainer */
+  --bg-inputContainer: #ffffff;
+  --bg-inputContainer-darkmode: #2c2c2c;
+  --bg-enter: #ffc933;
+  --text-enter: #000000;
+  --text-darkmode-enter: #ffffff;
+  --text-todocount: #b2b0b0;
+  --text-countitem: #b2b0b0;
+
+  /* container */
+  --text-todoitem: #000000;
+  --text-darkmode-todo: #000000;
+  --bg-todoitem: #f9c254;
+  --bg-todoitem-darkmode: #d6d7d8;
+  --completed-todoitem: #f8b2b2;
+  --deleteButton: #f3f4f6;
+  --hover-deleteButton: #e5e7eb;
+  --text-deleteButton: #000000;
+  --border-placeholder: #ccc;
+
+  /* checkbox */
+  --bg-checkbox: #f9f9f9;
+  --checked-checkbox: #ff4d4d;
+
+  /* sidebar */
+  --bg-sidebar: #fbf0d6;
+  --bg-sidebar-darkmode: #ffffff;
+  --hamburger: #000000;
+  --darkmode-hamburger: #ffffff;
+  --closeButton: #a5a3a3;
+  --text-darkmode-closeBtn: #5b5959;
+  --border-datePicker: #ccc;
+  --text-sidebarButton: #000000;
+  --text-darkmode-sidebar: #a5a3a3;
+  --text-datePicker: #a5a3a3;
+
+  /* nav */
+  --text-nav: #ffffff;
+  --text-darkmode-nav: #5b5959;
+  --dateButton: #000000;
+  --text-darkmode-dateButton: #5b5959;
+  --weekBtn: #ffffff;
+}
+
+/*기본 스타일 설정*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* body 스타일 */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body.dark-mode {
+  background-color: var(--bg-darkmode);
+  color: var(--text-darkmode);
+}
+
+/* 헤더 스타일 */
+header {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-header);
+  width: 100%;
+  height: 4rem;
+  cursor: default;
+}
+
+body.dark-mode header {
+  color: var(--text-darkmode-header);
+}
+
+/*햄버거 메뉴 버튼 스타일*/
+.hamburger {
+  position: absolute;
+  left: 1rem;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--hamburger);
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+}
+
+body.dark-mode .hamburger {
+  color: var(--darkmode-hamburger);
+}
+
+/*내비게이션 바 스타일*/
+nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-nav);
+}
+
+/* 모바일 화면 환경 */
+@media (max-width: 500px) {
+  .inputContainer,
+  .todo {
+    width: 90%;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+}
+
+/* 달력 버튼 스타일 */
+.calendarWrapper {
+  position: relative;
+  width: 22px;
+  height: 22px;
+}
+
+.calendarWrapper:hover {
+  transform: scale(1.1);
+}
+
+/*실제 날짜 입력 요소 스타일*/
+#datePicker {
+  position: absolute;
+  background: transparent;
+  color: var(--text-datePicker);
+  inset: 0;
+  border: none;
+  opacity: 100;
+  cursor: pointer;
+}
+
+/*webkit browser 날짜 텍스트 숨기기*/
+#datePicker::-webkit-datetime-edit {
+  display: none;
+}
+
+/*달력 아이콘 표시 및 스타일*/
+#datePicker::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  transform: scale(1.2);
+}
+
+body.dark-mode nav {
+  color: var(--text-darkmode-nav);
+}
+
+/*main 스타일*/
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/*화살표 버튼 스타일*/
+.dateButton {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--dateButton);
+}
+
+body.dark-mode .dateButton {
+  color: var(--text-darkmode-dateButton);
+}
+
+/*카운트 숫자*/
+#todo-count {
+  margin-left: 10px;
+  font-size: 14px;
+  color: var(--text-todocount);
+}
+
+/*카운트 item*/
+.count {
+  color: var(--text-countitem);
+  font-size: 14px;
+}
+
+/*입력창 스타일*/
+.inputContainer {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  border-radius: 1rem;
+  width: 20rem;
+  padding: 10px;
+  margin: 2rem 0 1rem 0;
+  background-color: var(--bg-inputContainer);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 입력창 스타일 */
+.input {
+  border: none;
+  outline: none;
+  text-align: left;
+  flex-grow: 1;
+}
+
+/* 엔터 버튼 스타일 */
+.enter {
+  display: flex;
+  cursor: pointer;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: var(--bg-enter);
+  color: var(--text-enter);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.enter:active {
+  transform: scale(0.95);
+}
+
+body.dark-mode .inputContainer,
+body.dark-mode .enter,
+body.dark-mode .input {
+  background: var(--bg-inputContainer-darkmode);
+}
+
+body.dark-mode .enter {
+  color: var(--text-darkmode-enter);
+}
+
+/*할 일 리스트 스타일*/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  height: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
+  margin-bottom: 100px;
+}
+
+/*할 일 item*/
+.todo {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.2s ease;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-todoitem);
+  color: var(--text-todoitem);
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 1rem;
+  width: 20rem;
+  padding: 10px;
+  gap: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todo:hover {
+  transform: translateY(-1px);
+}
+
+.todo.dragging {
+  opacity: 0.3;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.todo.placeholder {
+  height: 50px;
+  margin: 10px 0;
+  border: 2px dashed var(--border-placeholder);
+  border-radius: 1rem;
+  transition: height 0.2s ease;
+}
+
+body.dark-mode .todo {
+  background: var(--bg-todoitem-darkmode);
+  color: var(--text-darkmode-todo);
+}
+
+/*체크박스 스타일*/
+.todo input[type='checkbox'] {
+  appearance: none;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 2px solid var(--bg-checkbox);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  background-color: var(--bg-checkbox);
+}
+
+.todo input[type='checkbox']:checked {
+  background-color: var(--bg-checkbox);
+}
+
+.todo input[type='checkbox']:checked::after {
+  content: '✓';
+  position: absolute;
+  color: var(--checked-checkbox);
+  font-size: 14px;
+  left: 3px;
+  top: -2px;
+}
+
+/*할 일 텍스트 스타일*/
+.todo span {
+  flex-grow: 1;
+  font-size: 14px;
+  text-align: left;
+  word-break: break-all; /*피드백 수정; 영문, 숫자의 줄바꿈 안됨*/
+}
+
+/*완료된 할 일 텍스트 스타일*/
+.completed {
+  text-decoration: line-through;
+  color: var(--completed-todoitem);
+}
+
+/*할 일 삭제 버튼 스타일*/
+.delete {
+  flex-shrink: 0;
+  background: var(--deleteButton);
+  color: var(--text-deleteButton);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delete:hover {
+  background: var(--hover-deleteButton);
+}
+
+/*사이드바 스타일*/
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-sidebar);
+  transition: left 0.3s ease-in-out;
+  padding: 0.2rem;
+}
+
+body.dark-mode .sidebar {
+  background: var(--bg-sidebar-darkmode);
+  color: var(--text-darkmode-sidebar);
+}
+
+.sidebar button:not(.close) {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--text-sidebarButton);
+  border: none;
+  cursor: pointer;
+}
+
+/*사이드바 닫기 버튼*/
+.close {
+  width: auto;
+  margin: 20px 0 0 0;
+  align-self: flex-start;
+  border: none;
+  font-size: 19px;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--closeButton);
+}
+
+.close:hover {
+  transform: scale(1.1);
+}
+
+body.dark-mode .close {
+  color: var(--text-darkmode-closeBtn);
+}
+
+/*주간 버튼 스타일*/
+.weekBtn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  background: var(--weekBtn);
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+}
+
+body.dark-mode .weekBtn {
+  color: var(--text-darkmode);
+}
+
+/*테마 스타일*/
+.theme {
+  width: 100%;
+}
+
+body.dark-mode #currentDate {
+  color: var(--text-darkmode);
+}
