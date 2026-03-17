@@ -2,7 +2,7 @@
   --bg: #cbdef0;
   --bg-darkmode: #3d3c3c;
   --text: #000000;
-  --text-darkmode: #5b5959;
+  --text-darkmode: #6a6969;
   --text-header: #000000;
   --text-darkmode-header: #ffffff;
 
@@ -20,7 +20,7 @@
   --text-darkmode-todo: #000000;
   --bg-todoitem: #f9c254;
   --bg-todoitem-darkmode: #d6d7d8;
-  --completed-todoitem: #f8b2b2;
+  --completed-todoitem: #747373;
   --deleteButton: #f3f4f6;
   --hover-deleteButton: #e5e7eb;
   --text-deleteButton: #000000;
@@ -35,19 +35,20 @@
   --bg-sidebar-darkmode: #ffffff;
   --hamburger: #000000;
   --darkmode-hamburger: #ffffff;
-  --closeButton: #a5a3a3;
-  --text-darkmode-closeBtn: #5b5959;
-  --border-datePicker: #ccc;
+  --closeButton: #000000;
+  --text-darkmode-closeBtn: #050000;
   --text-sidebarButton: #000000;
-  --text-darkmode-sidebar: #a5a3a3;
-  --text-datePicker: #a5a3a3;
+  --text-darkmode-sidebar: #000000;
+  --weekBtn: #ffffff;
+  --text-weekBtn: #000000;
 
   /* nav */
-  --text-nav: #ffffff;
-  --text-darkmode-nav: #5b5959;
+  --text-nav: #000000;
+  --text-datePicker: #030000;
+  --border-datePicker: #ccc;
+  --text-darkmode-nav: #000000;
   --dateButton: #000000;
-  --text-darkmode-dateButton: #5b5959;
-  --weekBtn: #ffffff;
+  --text-darkmode-dateButton: #000000;
 }
 
 /*기본 스타일 설정*/
@@ -164,7 +165,15 @@ nav {
   transform: scale(1.2);
 }
 
+#currentDate {
+  color: var(--text-nav) !important;
+}
+
 body.dark-mode nav {
+  color: var(--text-darkmode-nav);
+}
+
+body.dark-mode #currentDate {
   color: var(--text-darkmode-nav);
 }
 
@@ -432,20 +441,16 @@ body.dark-mode .close {
   padding: 10px;
   margin: 5px 0;
   background: var(--weekBtn);
-  color: var(--text);
+  color: var(--text-weekBtn);
   border: none;
   cursor: pointer;
 }
 
 body.dark-mode .weekBtn {
-  color: var(--text-darkmode);
+  color: var(--text-weekBtn);
 }
 
 /*테마 스타일*/
 .theme {
   width: 100%;
-}
-
-body.dark-mode #currentDate {
-  color: var(--text-darkmode);
 }
