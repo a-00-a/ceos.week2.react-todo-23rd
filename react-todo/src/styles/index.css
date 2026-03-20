@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    font-family: 'Pretendard', sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  input[type='date']::-webkit-datetime-edit {
+    display: none;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    transform: scale(1.2);
+  }
+}
