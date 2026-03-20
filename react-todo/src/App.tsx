@@ -31,6 +31,7 @@ function App() {
   const [currentDate, setCurrentDate] = useState(getToday());
   const [darkMode, setDarkMode] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [dragIndex, setDragIndex] = useState(-1);
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(currentDate) || '[]') as Todo[];
@@ -103,6 +104,19 @@ function App() {
     setCurrentDate(getToday());
   };
 
+  const handleDrop = (dropIndex: number) => {
+    if (dragIndex === -1 || dragIndex === dropIndex) return;
+
+    const newTodos = [...todos];
+    const draggedTodo = newTodos[dragIndex];
+
+    newTodos.splice(dragIndex, 1);
+    newTodos.splice(dropIndex, 0, draggedTodo);
+
+    setTodos(newTodos);
+    setDragIndex(-1);
+  };
+
   const activeCount = useMemo(() => todos.filter((todo) => !todo.completed).length, [todos]);
   const doneCount = useMemo(() => todos.filter((todo) => todo.completed).length, [todos]);
 
@@ -133,7 +147,13 @@ function App() {
           onAddTodo={addTodo}
         />
 
-        <TodoList todos={todos} onRemoveTodo={removeTodo} onToggleTodo={toggleTodo} />
+        <TodoList
+          todos={todos}
+          setDragIndex={setDragIndex}
+          handleDrop={handleDrop}
+          onRemoveTodo={removeTodo}
+          onToggleTodo={toggleTodo}
+        />
       </main>
     </div>
   );

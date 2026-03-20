@@ -2,13 +2,23 @@ import type { Todo } from '../App';
 
 type TodoItemProps = {
   todo: Todo;
+  index: number;
+  setDragIndex: (index: number) => void;
+  handleDrop: (index: number) => void;
   onRemoveTodo: (id: string) => void;
   onToggleTodo: (id: string) => void;
 };
 
-export default function TodoItem({ todo, onRemoveTodo, onToggleTodo }: TodoItemProps) {
+export default function TodoItem({ todo, index, setDragIndex, handleDrop, onRemoveTodo, onToggleTodo }: TodoItemProps) {
   return (
-    <article className="flex w-full items-center gap-3 rounded-2xl bg-[#f9c254] px-3 py-3 text-sm font-medium text-black shadow-[0_2px_6px_rgba(0,0,0,0.05)] transition hover:-translate-y-[1px] dark:bg-[#d6d7d8]">
+    <div
+      className="flex w-full items-center gap-3 rounded-2xl bg-[#f9c254] px-3 py-3 text-sm font-medium text-black shadow-[0_2px_6px_rgba(0,0,0,0.05)] transition hover:-translate-y-[1px] dark:bg-[#d6d7d8]"
+      draggable
+      onDragStart={() => setDragIndex(index)}
+      onDragOver={(e) => e.preventDefault()}
+      onDragEnd={() => setDragIndex(-1)}
+      onDrop={() => handleDrop(index)}
+    >
       <input
         type="checkbox"
         checked={todo.completed}
@@ -27,6 +37,6 @@ export default function TodoItem({ todo, onRemoveTodo, onToggleTodo }: TodoItemP
       >
         삭제
       </button>
-    </article>
+    </div>
   );
 }

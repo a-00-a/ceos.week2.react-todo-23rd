@@ -3,11 +3,13 @@ import TodoItem from './TodoItem';
 
 type TodoListProps = {
   todos: Todo[];
+  setDragIndex: (index: number) => void;
+  handleDrop: (index: number) => void;
   onRemoveTodo: (id: string) => void;
   onToggleTodo: (id: string) => void;
 };
 
-export default function TodoList({ todos, onRemoveTodo, onToggleTodo }: TodoListProps) {
+export default function TodoList({ todos, setDragIndex, handleDrop, onRemoveTodo, onToggleTodo }: TodoListProps) {
   return (
     <section className="mt-4 flex w-full max-w-[20rem] flex-col items-end gap-3">
       {todos.length === 0 ? (
@@ -15,8 +17,16 @@ export default function TodoList({ todos, onRemoveTodo, onToggleTodo }: TodoList
           아직 등록된 할 일이 없어요.
         </div>
       ) : (
-        todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />
+        todos.map((todo, index) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            index={index}
+            setDragIndex={setDragIndex}
+            handleDrop={handleDrop}
+            onRemoveTodo={onRemoveTodo}
+            onToggleTodo={onToggleTodo}
+          />
         ))
       )}
     </section>
