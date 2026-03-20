@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 import Nav from './components/Nav';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
@@ -28,6 +29,7 @@ function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [input, setInput] = useState('');
   const [currentDate, setCurrentDate] = useState(getToday());
+  const [darkMode, setDarkMode] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -38,6 +40,35 @@ function App() {
   useEffect(() => {
     localStorage.setItem(currentDate, JSON.stringify(todos));
   }, [todos, currentDate]);
+
+  useEffect(() => {
+    const savedDarkMode = JSON.parse(localStorage.getItem('darkMode') || 'false') as boolean;
+    setDarkMode(savedDarkMode);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+    document.body.classList.toggle('dark-mode', darkMode);
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (target.closest('[data-sidebar]') || target.closest('[data-hamburger]')) {
+        return;
+      }
+      setSidebarOpen(false);
+    };
+
+    if (sidebarOpen) {
+      document.addEventListener('click', handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [sidebarOpen]);
 
   const addTodo = () => {
     const trimmed = input.trim();
@@ -78,6 +109,14 @@ function App() {
   return (
     <div className="min-h-screen bg-[#cbdef0] text-black transition-colors duration-300 dark:bg-[#3d3c3c]">
       <Header onOpenSidebar={() => setSidebarOpen(true)} onGoToday={goToday} />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        onChangeWeek={changeDate}
+        darkMode={darkMode}
+        onToggleDarkMode={() => setDarkMode((prev) => !prev)}
+      />
+
       <Nav
         currentDate={currentDate}
         displayDate={formatDisplayDate(currentDate)}
@@ -85,9 +124,7 @@ function App() {
         onPickDate={setCurrentDate}
       />
 
-      <main className="flex min-h-screen flex-col items-center bg-[#cbdef0] px-4 pb-24 pt-10 text-black">
-        <h1 className="text-3xl font-semibold">To Do</h1>
-
+      <main className="flex flex-col items-center px-4 pb-24">
         <TodoInput
           input={input}
           count={activeCount}
