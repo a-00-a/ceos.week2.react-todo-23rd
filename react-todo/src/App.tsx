@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
+import Header from './components/Header';
+import Nav from './components/Nav';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
 
@@ -15,12 +17,18 @@ const formatDateToYYYYMMDD = (date: Date) => {
   return `${year}-${month}-${day}`;
 };
 
+const formatDisplayDate = (dateString: string) => {
+  const [year, month, day] = dateString.split('-').map(Number);
+  return `${year}년 ${month}월 ${day}일`;
+};
+
 const getToday = () => formatDateToYYYYMMDD(new Date());
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [input, setInput] = useState('');
   const [currentDate, setCurrentDate] = useState(getToday());
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(currentDate) || '[]') as Todo[];
@@ -53,18 +61,44 @@ function App() {
     setTodos((prev) => prev.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)));
   };
 
+  const changeDate = (days: number) => {
+    const [year, month, day] = currentDate.split('-').map(Number);
+    const nextDate = new Date(year, month - 1, day);
+    nextDate.setDate(nextDate.getDate() + days);
+    setCurrentDate(formatDateToYYYYMMDD(nextDate));
+  };
+
+  const goToday = () => {
+    setCurrentDate(getToday());
+  };
+
   const activeCount = useMemo(() => todos.filter((todo) => !todo.completed).length, [todos]);
-  const doneCount = useMemo(() => todos.filter((todo) => !todo.completed).length, [todos]);
+  const doneCount = useMemo(() => todos.filter((todo) => todo.completed).length, [todos]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-[#cbdef0] px-4 pb-24 pt-10 text-black">
-      <h1 className="text-3xl font-semibold">To Do</h1>
-      <p className="mt-2 text-sm">{currentDate}</p>
+    <div className="min-h-screen bg-[#cbdef0] text-black transition-colors duration-300 dark:bg-[#3d3c3c]">
+      <Header onOpenSidebar={() => setSidebarOpen(true)} onGoToday={goToday} />
+      <Nav
+        currentDate={currentDate}
+        displayDate={formatDisplayDate(currentDate)}
+        onChangeDate={changeDate}
+        onPickDate={setCurrentDate}
+      />
 
-      <TodoInput input={input} count={activeCount} doneCount={doneCount} onChangeInput={setInput} onAddTodo={addTodo} />
+      <main className="flex min-h-screen flex-col items-center bg-[#cbdef0] px-4 pb-24 pt-10 text-black">
+        <h1 className="text-3xl font-semibold">To Do</h1>
 
-      <TodoList todos={todos} onRemoveTodo={removeTodo} onToggleTodo={toggleTodo} />
-    </main>
+        <TodoInput
+          input={input}
+          count={activeCount}
+          doneCount={doneCount}
+          onChangeInput={setInput}
+          onAddTodo={addTodo}
+        />
+
+        <TodoList todos={todos} onRemoveTodo={removeTodo} onToggleTodo={toggleTodo} />
+      </main>
+    </div>
   );
 }
 
