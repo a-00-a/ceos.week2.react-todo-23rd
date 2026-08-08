@@ -1,74 +1,94 @@
-# 2주차 과제: React Todo
-# 서론
+# Week 2 Mission: React Todo List
 
-안녕하세요 🙌🏻 23기 프론트엔드 운영진 **원채영**입니다.
+CEOS 23rd Frontend Study — Week 2 mission, refactoring the Week 1 vanilla JS to-do list into React.
 
-다들 1주차 미션인 Vanilla Todo를 만드시느라 수고 많으셨습니다! 1주차 미션을 통해 Vanilla JS로 SPA를 구현하면서 React를 사용하지 않을 때의 불편함을 느껴보셨을 것이라 생각합니다.
+🔗 [Try it out](https://ceos-week2-react-todo-23rd-five.vercel.app)
 
-그리하여 이번 미션은, 1주차 스터디 미션으로 주어진 Todo list 만들기를 **React**로 리팩토링하는 것입니다❗️
+## Deadline
 
-기존에 React를 어느 정도 사용해보신 분들께는 더 효율적인 구조와 디자인 패턴을 고민해보는 주차가 될 것이고,
-아직 React를 깊게 접해보지 못한 분들께는 기존 애플리케이션을 React로 포팅하는 과정을 통해 왜 React가 등장하게 되었는지, 그리고 React의 방식이 왜 Vanilla JS보다 효율적인지 체감해보는 주차가 될 것이라 생각합니다.
+- Saturday, March 21, 2026, 23:59 KST
 
-비교적 가벼운 미션인 만큼 코드를 짜는 데 있어 여러분의 **창의성**을 충분히 발휘해보시기 바랍니다. _❕작동하기만 하면 되는 것보다 같은 코드를 짜는 여러가지 방식과 패턴에 대해 많이 고민해보시고, 본인이 작성할 수 있는 가장 창의적인 방법으로 코드를 작성해주셨으면 합니다.❕_ 여러분이 미션을 수행하면서 한 고민과 선택들이 많을수록, 이번 스터디에서 더 많은 것을 얻어가실 수 있을 거라 기대합니다.
+## Preview
+<img width="800" height="" alt="image" src="https://github.com/user-attachments/assets/e552e8a1-1d56-4a42-b1b2-d58da23c5768" />
+<img width="800" height="" alt="image" src="https://github.com/user-attachments/assets/5bc22015-1f91-4510-8162-945b22d03ea7" />
+<img width="800" height="" alt="image" src="https://github.com/user-attachments/assets/cc0e88b0-7637-46f2-a5e8-973effef3bc0" />
 
-또한 이번 과제에서는 React 프로젝트 생성 시 **Vite 사용이 필수입니다.**
-기존 React 프로젝트 생성 방식 중 하나였던 Create React App(CRA) 은 2025년에 공식적으로 지원 종료가 발표되었습니다.
-추가로 공식 문서에서도 Vite 기반의 프로젝트 생성을 권장하고 있으며, 과제를 진행하면서 Vite를 활용한 프로젝트 환경 세팅, 빌드 툴, 번들링 등에 대해 자연스럽게 익혀보는 경험이 도움이 될 것이라 생각합니다.
+## Getting Started
 
-과제를 진행하다가 막히는 부분이 있더라도, 우선은 스스로 공부하고 찾아보며 해결해보는 과정을 권장드립니다.
-다만 미션과 관련해 운영진의 도움이 필요하다면, 언제든 프론트엔드 카카오톡방에 질문 남겨주세요!
+```bash
+npm install
+npm run dev
+```
 
-# 미션
+This starts the Vite dev server — any changes you save will hot-reload automatically.
 
-## 예시
+## About
 
-- [리액트 투두 예시](https://react-todo-21th-snowy.vercel.app/)
+This mission was about taking the vanilla JS to-do list from Week 1 and rebuilding it in React — same functionality, new architecture. The goal was to feel firsthand why React's approach (component-based, state-driven UI) is more efficient than manually manipulating the DOM.
 
-## 미션 목표
+## Features
 
-- VSCode, Prettier를 이용하여 개발환경을 관리합니다.
-- React의 기초를 이해합니다.
-- React를 통한 어플리케이션 상태 관리 방법을 이해합니다.
-- React Hooks에 대한 기초를 이해합니다. 
-- Vite를 통한 React 프로젝트 개발환경 구축을 익힙니다.
-- Tailwind CSS를 활용한 유틸리티 클래스 기반 스타일링 방식을 익힙니다.
+- All Week 1 functionality reimplemented in React (todo/done count included)
+- Built with Vite as the project scaffolding tool
+- Styled with Tailwind CSS
+- State managed entirely with React Hooks (no external state library)
+  
+## Stack
 
-## 기한
+- React (via Vite)
+- TypeScript
+- Tailwind CSS
 
-- 2026년 3월 21일 토요일 23:59까지
+## Getting Started
+
+​```bash
+npm install
+npm run dev
+​```
+
+This starts the Vite dev server — any changes you save will hot-reload automatically.
+
+## Reflection
+
+While working on this mission, I first built out the full project, then went back and re-organized my commits by feature rather than just leaving them as one large chunk of progress. Up through Week 2 these were individual assignments, but it made me realize that in upcoming collaborative missions, commits aren't just a record of what changed — they're how teammates follow the project's progress. Breaking commits down by feature also helped me understand the flow of the project itself, not just the end result.
 
 ## Review Questions
 
-- Virtual-DOM은 무엇이고, 이를 사용함으로서 얻는 이점은 무엇인가요?
-- React.memo(), useMemo(), useCallback() 함수로 진행할 수 있는 리액트 렌더링 최적화에 대해 설명해주세요. 다른 방식이 있다면 이에 대한 소개도 좋습니다.
-- React 컴포넌트 생명주기에 대해서 설명해주세요.
+**1.What is the Virtual DOM, and what are the benefits of using it?**
 
-## 필수 요건
-- 1주차 미션의 결과물을 그대로 React로 구현합니다. (‼️ todo / done 개수 잊지 마세요 ‼️)
-- Tailwind CSS를 사용합니다
-- React Hooks만을 사용해 상태를 관리합니다.(전역 상태관리 라이브러리 사용 XX) 
-- Vite를 활용하여 React 프로젝트 환경 구축을 진행합니다
+The Virtual DOM is an in-memory representation of the actual DOM. Instead of manipulating the real DOM directly, React updates this virtual copy first, figures out what actually changed, and only applies those specific changes to the real DOM. For example, when a single todo's status changes, React doesn't re-render the entire list — only that specific `TodoItem` gets updated. This reduces unnecessary DOM operations, improves performance, and makes it easier to write UI code declaratively based on state.
 
-## 선택 요건
+**2.Explain the rendering optimizations available through `React.memo()`, `useMemo()`, and `useCallback()`. Feel free to mention other approaches too.**
 
-- 기존 Todo-list에 여러분들이 추가하고 싶은 기능과 디자인을 자유롭게 추가해보세요. 
-- TypeScript를 활용하여 프로젝트를 진행해보세요.
+React provides several tools to reduce unnecessary re-renders:
 
-## 로컬 실행방법
-`npm run dev`: Vite 개발 서버를 실행하고, 변경 사항이 저장될 때마다 자동으로 반영됩니다.
+- `React.memo()` prevents a component from re-rendering if its props haven't changed.
+- `useMemo()` memoizes an expensive computed value so it isn't recalculated on every render.
+- `useCallback()` memoizes a function so it isn't recreated on every render — useful when passing callbacks down to child components.
 
-# 링크 및 참고자료
+Beyond these, keeping state as minimal and localized as possible, and splitting components thoughtfully, also helps with rendering performance.
+
+**3.Explain the React component lifecycle.**
+
+React components generally go through three phases: Mount, Update, and Unmount.
+
+- **Mount**: when a component is first created and rendered.
+- **Update**: when state or props change, triggering a re-render.
+- **Unmount**: when a component is removed from the DOM.
+
+In function components, `useEffect` is used to hook into this lifecycle — for example, updating `localStorage` when a specific value changes, or fetching data on initial mount.
+
+## Links & References
 
 - [create react app (CRA)](https://create-react-app.dev/docs/getting-started/)
-- [리액트 docs 주요 개념 1-12](https://react.dev/learn)
-- [리액트 docs Hook 1-3](https://react.dev/reference/react)
-- [리액트 useEffect 완벽 가이드](https://overreacted.io/ko/a-complete-guide-to-useeffect/)
-- [컴포넌트 네이밍을 위한 자바스크립트 네이밍 컨벤션](https://velog.io/@cada/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C-%EB%84%A4%EC%9D%B4%EB%B0%8D-%EC%BB%A8%EB%B2%A4%EC%85%98-%ED%8E%B8)
-- [useState, useEffect hooks](https://velog.io/@velopert/react-hooks#1-usestate)
-- [tailwind 공식 문서](https://tailwindcss.com/docs/installation/using-vite)
-- [vscode prettier 설정](https://velog.io/@gangk_99/VS-Code-Prettier-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)
-- [create react app (CRA) 지원종료 공식문서](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) 
-- [create react app 지원종료관련 okky 커뮤니티 게시글](https://okky.kr/articles/1527414) 
-- [cra 대신에 vite로 React 프로젝트 시작하기](https://www.daleseo.com/vite-react/) 
-- [Vite 실무 적용기 - 설명 + 프로젝트 설정](https://blog.hectodata.co.kr/bonjour-vite/)
+- [React Docs — Main Concepts 1–12](https://react.dev/learn)
+- [React Docs — Hooks 1–3](https://react.dev/reference/react)
+- [A Complete Guide to useEffect (Korean)](https://overreacted.io/ko/a-complete-guide-to-useeffect/)
+- [JavaScript Naming Conventions for Components (Korean)](https://velog.io/@cada/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C-%EB%84%A4%EC%9D%B4%EB%B0%8D-%EC%BB%A8%EB%B2%A4%EC%85%98-%ED%8E%B8)
+- [useState, useEffect Hooks (Korean)](https://velog.io/@velopert/react-hooks#1-usestate)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs/installation/using-vite)
+- [VS Code Prettier Setup (Korean)](https://velog.io/@gangk_99/VS-Code-Prettier-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)
+- [CRA Deprecation — Official Announcement](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) 
+- [CRA Deprecation Discussion (Korean, OKKY Community)](https://okky.kr/articles/1527414) 
+- [Starting a React Project with Vite Instead of CRA (Korean)](https://www.daleseo.com/vite-react/) 
+- [Practical Vite Adoption Notes (Korean)](https://blog.hectodata.co.kr/bonjour-vite/)
